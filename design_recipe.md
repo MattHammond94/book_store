@@ -24,24 +24,26 @@ Usually, the Model class name will be the capitalised table name (single instead
 # Table name: books
 
 # Model class
-# (in lib/student.rb)
-class Student
+# (in lib/books.rb)
+class books
 end
 
 # Repository class
-# (in lib/student_repository.rb)
-class StudentRepository
+# (in lib/book_repository.rb)
+class BookRepository
 end
+
+
 4. Implement the Model class
 Define the attributes of your Model class. You can usually map the table columns to the attributes of the class, including primary and foreign keys.
 
 # EXAMPLE
-# Table name: students
+# Table name: books
 
 # Model class
-# (in lib/student.rb)
+# (in lib/books.rb)
 
-class Student
+class Books
 
   # Replace the attributes by your own columns.
   attr_accessor :id, :name, :cohort_name
@@ -143,17 +145,16 @@ This is so you get a fresh table contents every time you run the test suite.
 
 # EXAMPLE
 
-# file: spec/student_repository_spec.rb
+# file: spec/books_repository_spec.rb
 
-def reset_students_table
-  seed_sql = File.read('spec/seeds_students.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'students' })
-  connection.exec(seed_sql)
-end
+ def reset_albums_table
+    seed_sql = File.read('')
+    connection = PG.connect({ host: '127.0.0.1', dbname: 'music_library_test' })
+    connection.exec(seed_sql)
+  end
 
-describe StudentRepository do
-  before(:each) do 
-    reset_students_table
+  before(:each) do
+    reset_albums_table
   end
 
   # (your tests will go here).
