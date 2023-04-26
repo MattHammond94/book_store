@@ -81,9 +81,9 @@ class BooksRepository
   # No arguments
   def all
     # Executes the SQL query:
-    # SELECT id, name, cohort_name FROM students;
+    # SELECT * FROM books;
 
-    # Returns an array of Student objects.
+    # Returns an array of Book objects.
   end
 
   # Gets a single record by its ID
@@ -114,32 +114,32 @@ These examples will later be encoded as RSpec tests.
 # EXAMPLES
 
 # 1
-# Get all students
+# Get all books
 
-repo = StudentRepository.new
+repo = BookRepository.new
 
-students = repo.all
+books = repo.all
 
-students.length # =>  2
+books.length # =>  Amount of books in DB as an int
 
-students[0].id # =>  1
-students[0].name # =>  'David'
-students[0].cohort_name # =>  'April 2022'
+books[0].id # =>  1
+books[0].title # =>  'LOTR'
+books[0].author_name # =>  'Tolkein'
 
-students[1].id # =>  2
-students[1].name # =>  'Anna'
-students[1].cohort_name # =>  'May 2022'
+books[1].id # =>  2
+books[1].title # =>  'HP - Phillys Stone'
+books[1].author_name # =>  ''
 
 # 2
 # Get a single student
 
-repo = StudentRepository.new
+repo = BookRepository.new
 
-student = repo.find(1)
+book = repo.find(1)
 
-student.id # =>  1
-student.name # =>  'David'
-student.cohort_name # =>  'April 2022'
+book.id # =>  1
+book.title # =>  'LOTR'
+book.author_name # =>  'Tolkein'
 
 # Add more examples for each method
 Encode this example as a test.
@@ -154,14 +154,14 @@ This is so you get a fresh table contents every time you run the test suite.
 
 # file: spec/books_repository_spec.rb
 
- def reset_albums_table
+ def reset_books_table
     seed_sql = File.read('')
     connection = PG.connect({ host: '127.0.0.1', dbname: '' })
     connection.exec(seed_sql)
   end
 
   before(:each) do
-    reset_albums_table
+    reset_books_table
   end
 
   # (your tests will go here).
