@@ -6,7 +6,12 @@ class BooksRepository
     sql = 'SELECT title, author_name FROM books WHERE id = $1;'
     params = [id]
     result = DatabaseConnection.exec_params(sql, params)
-    result
+    item = result[0]
+
+    book = Books.new
+    book.title = item['title']
+    book.author_name = item['author_name']
+    return book
   end
 
   def all
