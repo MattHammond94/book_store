@@ -2,6 +2,13 @@ require_relative './books'
 
 class BooksRepository
 
+  def find(id)
+    sql = 'SELECT title, author_name FROM books WHERE id = $1;'
+    params = [id]
+    result = DatabaseConnection.exec_params(sql, params)
+    result
+  end
+
   def all
     result = DatabaseConnection.exec_params('SELECT * FROM books;', [])
   
